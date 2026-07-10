@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanchonete Sabor Caseiro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <header class="topo">
+        <div>
+            <span class="tag">Lanchonete</span>
+            <h1>Sabor Caseiro</h1>
+            <p>Peça lanches fresquinhos e saborosos, preparados na hora com ingredientes selecionados.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <div>
+                <h2>Bem-vindo ao nosso cardápio</h2>
+                <p>Confira nossas opções de sanduíches, pizzas, combos e bebidas. Toque em "Adicionar" para montar seu pedido.</p>
+            </div>
+        </section>
+
+        <section id="cardapio" class="cardapio">
+            <h2>Cardápio</h2>
+            <div class="lista-itens">
+                <article class="cardapio-item" data-name="Cheeseburger" data-price="24.90">
+                    <h3>Cheeseburger</h3>
+                    <p>Hambúrguer suculento com queijo, alface, tomate e molho especial.</p>
+                    <span>R$ 24,90</span>
+                    <button type="button">Adicionar</button>
+                </article>
+                <article class="cardapio-item" data-name="X-Salada" data-price="26.50">
+                    <h3>X-Salada</h3>
+                    <p>Hambúrguer com queijo, alface, tomate, cebola e maionese.</p>
+                    <span>R$ 26,50</span>
+                    <button type="button">Adicionar</button>
+                </article>
+                <article class="cardapio-item" data-name="Pizza de Calabresa" data-price="39.90">
+                    <h3>Pizza de Calabresa</h3>
+                    <p>Massa fina com calabresa, cebola e muito queijo.</p>
+                    <span>R$ 39,90</span>
+                    <button type="button">Adicionar</button>
+                </article>
+                <article class="cardapio-item" data-name="Esfirra de Carne" data-price="8.90">
+                    <h3>Esfirra de Carne</h3>
+                    <p>Esfirra assada com recheio temperado na medida certa.</p>
+                    <span>R$ 8,90</span>
+                    <button type="button">Adicionar</button>
+                </article>
+                <article class="cardapio-item" data-name="Batata Frita" data-price="15.00">
+                    <h3>Batata Frita</h3>
+                    <p>Porção crocante e dourada, perfeita para compartilhar.</p>
+                    <span>R$ 15,00</span>
+                    <button type="button">Adicionar</button>
+                </article>
+                <article class="cardapio-item" data-name="Refrigerante" data-price="7.50">
+                    <h3>Refrigerante</h3>
+                    <p>Lata gelada para completar seu pedido.</p>
+                    <span>R$ 7,50</span>
+                    <button type="button">Adicionar</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="pedido" class="pedido">
+            <h2>Seu Pedido</h2>
+            <div class="pedido-conteudo">
+                <ul id="lista-pedido" class="lista-pedido">
+                    <li class="vazio">Nenhum item adicionado ainda.</li>
+                </ul>
+                <div class="resumo-pedido">
+                    <p>Total: <strong>R$ <span id="total">0,00</span></strong></p>
+                    <button id="limpar-pedido" type="button">Limpar pedido</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="app-actions" style="max-width:940px;margin:0 auto 40px;padding:0 20px;">
+            <h2>Aplicativo / Ferramentas</h2>
+            <p>Abra o sistema Python de backend ou visualize os arquivos do projeto.</p>
+            <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
+                <button id="abrir-app" type="button">Abrir janela do App</button>
+                <a id="abrir-pasta-link" href="file:///home/hellen/Desktop/html-lanchonete-main/lanchonete-python" target="_blank" rel="noopener" class="link-button" style="text-decoration:none;">
+                    <button type="button">Abrir pasta `lanchonete-python`</button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>Atendimento: (11) 99999-9999 · Rua do Sabor, 123 · Aberto todos os dias</p>
+    </footer>
+<!-- Modal para salvar pedidos e ver clientes/pedidos -->
+<div id="app-modal" class="app-modal" aria-hidden="true">
+    <div class="app-modal-content">
+        <button id="fechar-app-modal" class="close-modal">✕</button>
+        <h2>Salvar Pedido</h2>
+        <p>Preencha o nome do cliente e salve o pedido atual no histórico.</p>
+
+        <label for="cliente-nome" style="display:block;margin-top:12px;font-weight:600;">Nome do cliente</label>
+        <input id="cliente-nome" type="text" placeholder="Nome do cliente" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #ddd;" />
+
+        <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="salvar-pedido-btn" type="button">Salvar pedido</button>
+            <button id="limpar-cliente-btn" type="button">Limpar</button>
+        </div>
+
+        <hr style="margin:16px 0;" />
+
+        <h3>Clientes</h3>
+        <ul id="clientes-list" style="margin-top:8px;padding-left:18px;max-height:150px;overflow:auto;"></ul>
+
+        <h3 style="margin-top:12px;">Últimos Pedidos</h3>
+        <ul id="pedidos-recentes-list" style="margin-top:8px;padding-left:18px;max-height:220px;overflow:auto;"></ul>
+
+        <p style="margin-top:12px;color:#666;font-size:0.9rem;">Os dados ficam salvos localmente no navegador (localStorage).</p>
+    </div>
+</div>
+
+</body>
+
+</html>
